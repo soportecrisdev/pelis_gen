@@ -477,11 +477,83 @@
         <!-- Tab JSON -->
         <div id="json" class="tab-content">
             <h2 style="margin-bottom: 20px; color: #00d4ff;">JSON Generado</h2>
+            
+            <!-- Configuración de Auto-guardado -->
+            <div style="background: rgba(0, 123, 255, 0.1); padding: 20px; border-radius: 10px; margin-bottom: 20px; border: 1px solid rgba(0, 123, 255, 0.3);">
+                <h3 style="color: #00d4ff; margin-bottom: 15px;">⚙️ Configuración de Auto-guardado</h3>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>URL del Repositorio GitHub</label>
+                        <input type="url" id="githubRepoUrl" placeholder="https://username.github.io/repository-name/" style="margin-bottom: 10px;">
+                        <small style="color: #b3d9ff;">URL donde se desplegará tu página (GitHub Pages)</small>
+                    </div>
+                    <div class="form-group">
+                        <label>Nombre del archivo JSON</label>
+                        <input type="text" id="jsonFileName" value="content.json" placeholder="content.json">
+                        <small style="color: #b3d9ff;">Nombre del archivo que leerá tu página</small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="autoSync" style="width: auto; margin-right: 10px;">
+                        Sincronización automática (guarda cada cambio inmediatamente)
+                    </label>
+                </div>
+
+                <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 15px;">
+                    <button class="btn" onclick="saveToFile()">💾 Guardar como Archivo</button>
+                    <button class="btn btn-secondary" onclick="uploadToGitHub()">🚀 Subir a GitHub</button>
+                    <button class="btn" onclick="generateEmbedCode()">🔗 Código de Integración</button>
+                </div>
+            </div>
+
+            <!-- Estadísticas -->
+            <div style="background: rgba(0, 0, 0, 0.3); padding: 15px; border-radius: 10px; margin-bottom: 20px;">
+                <div class="form-row">
+                    <div style="text-align: center;">
+                        <div style="color: #00d4ff; font-size: 2rem; font-weight: bold;" id="movieCount">0</div>
+                        <div style="color: #b3d9ff;">Películas</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="color: #00d4ff; font-size: 2rem; font-weight: bold;" id="seriesCount">0</div>
+                        <div style="color: #b3d9ff;">Series</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="color: #00d4ff; font-size: 2rem; font-weight: bold;" id="episodeCount">0</div>
+                        <div style="color: #b3d9ff;">Episodios</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="color: #00d4ff; font-size: 1.2rem;" id="lastUpdate">-</div>
+                        <div style="color: #b3d9ff;">Última actualización</div>
+                    </div>
+                </div>
+            </div>
+
             <div class="json-output">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                    <h3 style="color: #b3d9ff;">📄 Contenido JSON</h3>
+                    <div>
+                        <span style="color: #28a745; margin-right: 15px;" id="fileSize">0 KB</span>
+                        <span style="color: #007bff;" id="syncStatus">●</span>
+                    </div>
+                </div>
                 <pre id="jsonOutput">{"movies": [], "series": []}</pre>
-                <button class="btn copy-btn" onclick="copyJSON()">Copiar JSON</button>
-                <button class="btn btn-secondary" onclick="downloadJSON()">Descargar JSON</button>
-                <button class="btn btn-danger" onclick="clearData()">Limpiar Todo</button>
+                <div style="margin-top: 15px;">
+                    <button class="btn copy-btn" onclick="copyJSON()">📋 Copiar JSON</button>
+                    <button class="btn btn-secondary" onclick="downloadJSON()">⬇️ Descargar JSON</button>
+                    <button class="btn" onclick="importJSON()">📁 Importar JSON</button>
+                    <button class="btn btn-danger" onclick="clearData()">🗑️ Limpiar Todo</button>
+                </div>
+            </div>
+
+            <!-- Código de integración -->
+            <div id="embedCodeSection" style="display: none; margin-top: 20px; background: rgba(0, 0, 0, 0.5); padding: 20px; border-radius: 10px;">
+                <h3 style="color: #00d4ff; margin-bottom: 15px;">🔗 Código de Integración para tu Página</h3>
+                <p style="color: #b3d9ff; margin-bottom: 15px;">Usa este código en tu página web para cargar automáticamente el contenido:</p>
+                <pre id="embedCode" style="background: rgba(0, 0, 0, 0.7); padding: 15px; border-radius: 5px; color: #00ff88; overflow-x: auto;"></pre>
+                <button class="btn" onclick="copyEmbedCode()">📋 Copiar Código</button>
             </div>
         </div>
     </div>
@@ -876,6 +948,47 @@
             const jsonOutput = document.getElementById('jsonOutput');
             const formattedJSON = JSON.stringify(data, null, 2);
             jsonOutput.textContent = formattedJSON;
+            
+            // Actualizar estadísticas
+            updateStats();
+            
+            // Auto-guardar si está habilitado
+            if (document.getElementById('autoSync') && document.getElementById('autoSync').checked) {
+                autoSaveToFile();
+            }
+        }
+
+        function updateStats() {
+            const movieCount = data.movies.length;
+            const seriesCount = data.series.length;
+            let episodeCount = 0;
+            
+            data.series.forEach(series => {
+                series.seasons.forEach(season => {
+                    episodeCount += season.episodes.length;
+                });
+            });
+            
+            document.getElementById('movieCount').textContent = movieCount;
+            document.getElementById('seriesCount').textContent = seriesCount;
+            document.getElementById('episodeCount').textContent = episodeCount;
+            
+            const now = new Date();
+            document.getElementById('lastUpdate').textContent = now.toLocaleTimeString();
+            
+            // Calcular tamaño del archivo
+            const jsonSize = (JSON.stringify(data).length / 1024).toFixed(2);
+            document.getElementById('fileSize').textContent = jsonSize + ' KB';
+            
+            // Estado de sincronización
+            const syncStatus = document.getElementById('syncStatus');
+            if (document.getElementById('autoSync') && document.getElementById('autoSync').checked) {
+                syncStatus.style.color = '#28a745';
+                syncStatus.title = 'Sincronización automática activa';
+            } else {
+                syncStatus.style.color = '#ffc107';
+                syncStatus.title = 'Sincronización manual';
+            }
         }
 
         function copyJSON() {
@@ -888,17 +1001,162 @@
         }
 
         function downloadJSON() {
+            const fileName = document.getElementById('jsonFileName').value || 'content.json';
             const jsonText = JSON.stringify(data, null, 2);
             const blob = new Blob([jsonText], { type: 'application/json' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = 'gen-zenit-content.json';
+            a.download = fileName;
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
             URL.revokeObjectURL(url);
             showToast('JSON descargado exitosamente');
+        }
+
+        function saveToFile() {
+            downloadJSON();
+            showToast('Archivo guardado. Súbelo manualmente a tu repositorio de GitHub.');
+        }
+
+        function autoSaveToFile() {
+            // Guardar automáticamente en localStorage y crear archivo
+            const fileName = document.getElementById('jsonFileName').value || 'content.json';
+            const jsonText = JSON.stringify(data, null, 2);
+            
+            // Guardar en localStorage con timestamp
+            const autoSaveData = {
+                content: data,
+                timestamp: new Date().toISOString(),
+                fileName: fileName
+            };
+            localStorage.setItem('genZenitAutoSave', JSON.stringify(autoSaveData));
+            
+            // Mostrar notificación discreta
+            const syncStatus = document.getElementById('syncStatus');
+            syncStatus.style.color = '#28a745';
+            setTimeout(() => {
+                syncStatus.style.color = '#28a745';
+            }, 1000);
+        }
+
+        function uploadToGitHub() {
+            const repoUrl = document.getElementById('githubRepoUrl').value;
+            if (!repoUrl) {
+                showToast('Por favor, ingresa la URL de tu repositorio GitHub');
+                return;
+            }
+            
+            // Generar instrucciones para subir a GitHub
+            const instructions = `
+Para subir tu contenido a GitHub Pages:
+
+1. Ve a tu repositorio: ${repoUrl}
+2. Crea o edita el archivo: ${document.getElementById('jsonFileName').value}
+3. Pega el contenido JSON generado
+4. Haz commit y push
+5. Tu página estará disponible en: ${repoUrl}
+
+¿Quieres descargar el archivo JSON para subirlo manualmente?`;
+            
+            if (confirm(instructions)) {
+                downloadJSON();
+            }
+        }
+
+        function generateEmbedCode() {
+            const repoUrl = document.getElementById('githubRepoUrl').value;
+            const fileName = document.getElementById('jsonFileName').value || 'content.json';
+            
+            if (!repoUrl) {
+                showToast('Por favor, ingresa la URL de tu repositorio GitHub primero');
+                return;
+            }
+            
+            const baseUrl = repoUrl.endsWith('/') ? repoUrl : repoUrl + '/';
+            const jsonUrl = baseUrl + fileName;
+            
+            const embedCode = `<!-- Código de integración Gen Zenit -->
+<script>
+// Función para cargar contenido desde Gen Zenit
+async function loadGenZenitContent() {
+    try {
+        const response = await fetch('${jsonUrl}');
+        const data = await response.json();
+        
+        console.log('Contenido cargado:', data);
+        
+        // Aquí puedes procesar los datos
+        displayMovies(data.movies);
+        displaySeries(data.series);
+        
+        return data;
+    } catch (error) {
+        console.error('Error al cargar contenido:', error);
+        return null;
+    }
+}
+
+// Funciones de ejemplo para mostrar contenido
+function displayMovies(movies) {
+    movies.forEach(movie => {
+        console.log('Película:', movie.title);
+        // Agregar tu lógica aquí
+    });
+}
+
+function displaySeries(series) {
+    series.forEach(serie => {
+        console.log('Serie:', serie.title);
+        // Agregar tu lógica aquí
+    });
+}
+
+// Cargar contenido al cargar la página
+document.addEventListener('DOMContentLoaded', loadGenZenitContent);
+</script>`;
+            
+            document.getElementById('embedCode').textContent = embedCode;
+            document.getElementById('embedCodeSection').style.display = 'block';
+            showToast('Código de integración generado');
+        }
+
+        function copyEmbedCode() {
+            const embedCode = document.getElementById('embedCode').textContent;
+            navigator.clipboard.writeText(embedCode).then(() => {
+                showToast('Código de integración copiado');
+            }).catch(err => {
+                showToast('Error al copiar código');
+            });
+        }
+
+        function importJSON() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = '.json';
+            input.onchange = function(event) {
+                const file = event.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        try {
+                            const importedData = JSON.parse(e.target.result);
+                            if (importedData.movies && importedData.series) {
+                                data = importedData;
+                                updateJSONDisplay();
+                                showToast('JSON importado exitosamente');
+                            } else {
+                                showToast('Formato de JSON inválido');
+                            }
+                        } catch (error) {
+                            showToast('Error al leer el archivo JSON');
+                        }
+                    };
+                    reader.readAsText(file);
+                }
+            };
+            input.click();
         }
 
         function clearData() {
@@ -935,24 +1193,129 @@
             }
         }
 
+        // Cargar configuración guardada
+        const savedConfig = localStorage.getItem('genZenitConfig');
+        if (savedConfig) {
+            try {
+                const config = JSON.parse(savedConfig);
+                if (config.githubRepoUrl) document.getElementById('githubRepoUrl').value = config.githubRepoUrl;
+                if (config.jsonFileName) document.getElementById('jsonFileName').value = config.jsonFileName;
+                if (config.autoSync) document.getElementById('autoSync').checked = config.autoSync;
+            } catch (e) {
+                console.error('Error al cargar configuración:', e);
+            }
+        }
+
+        // Guardar configuración automáticamente
+        function saveConfig() {
+            const config = {
+                githubRepoUrl: document.getElementById('githubRepoUrl').value,
+                jsonFileName: document.getElementById('jsonFileName').value,
+                autoSync: document.getElementById('autoSync').checked
+            };
+            localStorage.setItem('genZenitConfig', JSON.stringify(config));
+        }
+
+        // Event listeners para guardar configuración
+        document.getElementById('githubRepoUrl').addEventListener('input', saveConfig);
+        document.getElementById('jsonFileName').addEventListener('input', saveConfig);
+        document.getElementById('autoSync').addEventListener('change', saveConfig);
+
         // Guardar datos automáticamente
         function saveData() {
             localStorage.setItem('genZenitData', JSON.stringify(data));
         }
 
-        // Guardar cada vez que se agreguen datos
+        // Modificar las funciones originales para incluir auto-guardado
         const originalAddMovie = addMovie;
         const originalAddSeries = addSeries;
 
-        addMovie = function() {
+        window.addMovie = function() {
             originalAddMovie();
             saveData();
+            updateJSONDisplay();
         };
 
-        addSeries = function() {
+        window.addSeries = function() {
             originalAddSeries();
             saveData();
+            updateJSONDisplay();
         };
+
+        // Función para generar URL de descarga directa
+        function generateDirectDownloadURL() {
+            const repoUrl = document.getElementById('githubRepoUrl').value;
+            const fileName = document.getElementById('jsonFileName').value || 'content.json';
+            
+            if (!repoUrl) return null;
+            
+            // Convertir URL de GitHub Pages a raw GitHub URL
+            let rawUrl = repoUrl;
+            if (repoUrl.includes('github.io')) {
+                const parts = repoUrl.split('.');
+                const username = parts[0].split('//')[1];
+                const repo = parts[1].split('/')[0];
+                rawUrl = `https://raw.githubusercontent.com/${username}/${repo}/main/${fileName}`;
+            }
+            
+            return rawUrl;
+        }
+
+        // Crear archivo JSON actualizado automáticamente
+        function createUpdatedJSONFile() {
+            const jsonText = JSON.stringify(data, null, 2);
+            const blob = new Blob([jsonText], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            
+            // Crear enlace de descarga oculto
+            const existingLink = document.getElementById('autoDownloadLink');
+            if (existingLink) existingLink.remove();
+            
+            const a = document.createElement('a');
+            a.id = 'autoDownloadLink';
+            a.href = url;
+            a.download = document.getElementById('jsonFileName').value || 'content.json';
+            a.style.display = 'none';
+            document.body.appendChild(a);
+            
+            return url;
+        }
+
+        // Actualizar archivo automáticamente cuando cambie el contenido
+        function handleContentChange() {
+            updateJSONDisplay();
+            createUpdatedJSONFile();
+            
+            if (document.getElementById('autoSync').checked) {
+                showToast('Contenido actualizado automáticamente', 'success', 1500);
+            }
+        }
+
+        // Función mejorada para mostrar toasts
+        function showToast(message, type = 'info', duration = 3000) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            
+            // Colores según el tipo
+            switch(type) {
+                case 'success':
+                    toast.style.background = 'linear-gradient(45deg, #28a745, #20c997)';
+                    break;
+                case 'warning':
+                    toast.style.background = 'linear-gradient(45deg, #ffc107, #e0a800)';
+                    break;
+                case 'error':
+                    toast.style.background = 'linear-gradient(45deg, #dc3545, #c82333)';
+                    break;
+                default:
+                    toast.style.background = 'linear-gradient(45deg, #007bff, #0056b3)';
+            }
+            
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, duration);
+        }
     </script>
 </body>
 </html>
