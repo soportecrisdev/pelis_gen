@@ -1,0 +1,250 @@
+{
+  "zenit_config": {
+    "version": "1.0.0",
+    "updated": "2024-08-04T00:00:00.000Z",
+    "app_info": {
+      "name": "Zenit Player",
+      "description": "Reproductor avanzado de videos para múltiples servicios",
+      "repository": "https://github.com/soportecrisdev/pelis_gen.git",
+      "homepage": "https://soportecrisdev.github.io/pelis_gen/"
+    }
+  },
+  "movies": [
+    {
+      "id": 1,
+      "title": "The Matrix",
+      "description": "Un programador descubre que la realidad es una simulación controlada por máquinas.",
+      "url": "https://ejemplo.com/matrix.mp4",
+      "poster": "https://ejemplo.com/posters/matrix.jpg",
+      "year": 1999,
+      "genre": "Ciencia Ficción",
+      "rating": 8.7,
+      "duration": "136 min",
+      "addedDate": "2024-08-04T00:00:00.000Z",
+      "sources": {
+        "mega": "https://mega.nz/file/EXAMPLE#KEY",
+        "gdrive": "https://drive.google.com/file/d/EXAMPLE/view",
+        "dropbox": "https://www.dropbox.com/s/EXAMPLE/matrix.mp4?dl=0"
+      }
+    },
+    {
+      "id": 2,
+      "title": "Inception",
+      "description": "Un ladrón que roba secretos del subconsciente debe realizar la tarea imposible de la 'incepción'.",
+      "url": "https://ejemplo.com/inception.mp4",
+      "poster": "https://ejemplo.com/posters/inception.jpg",
+      "year": 2010,
+      "genre": "Thriller",
+      "rating": 8.8,
+      "duration": "148 min",
+      "addedDate": "2024-08-04T00:00:00.000Z",
+      "sources": {
+        "mega": "https://mega.nz/file/EXAMPLE2#KEY2",
+        "gdrive": "https://drive.google.com/file/d/EXAMPLE2/view"
+      }
+    },
+    {
+      "id": 3,
+      "title": "Interstellar",
+      "description": "Un grupo de exploradores viaja a través de un agujero de gusano en el espacio.",
+      "url": "https://ejemplo.com/interstellar.mp4",
+      "poster": "https://ejemplo.com/posters/interstellar.jpg",
+      "year": 2014,
+      "genre": "Ciencia Ficción",
+      "rating": 8.6,
+      "duration": "169 min",
+      "addedDate": "2024-08-04T00:00:00.000Z",
+      "sources": {
+        "mega": "https://mega.nz/file/EXAMPLE3#KEY3",
+        "gdrive": "https://drive.google.com/file/d/EXAMPLE3/view",
+        "direct": "https://servidor-directo.com/interstellar.mp4"
+      }
+    }
+  ],
+  "series": [
+    {
+      "id": 1,
+      "title": "Breaking Bad",
+      "description": "Un profesor de química se convierte en productor de metanfetaminas.",
+      "poster": "https://ejemplo.com/posters/breaking-bad.jpg",
+      "year": 2008,
+      "genre": "Drama",
+      "rating": 9.5,
+      "status": "Finalizada",
+      "totalSeasons": 5,
+      "totalEpisodes": 62,
+      "addedDate": "2024-08-04T00:00:00.000Z",
+      "seasons": {
+        "1": {
+          "title": "Temporada 1",
+          "year": 2008,
+          "episodes": 7,
+          "episodes_data": {
+            "1": {
+              "title": "Pilot",
+              "description": "Walter White entra al mundo de las drogas.",
+              "url": "https://ejemplo.com/bb/s1e1.mp4",
+              "duration": "58 min",
+              "sources": {
+                "mega": "https://mega.nz/file/BB1E1#KEY",
+                "gdrive": "https://drive.google.com/file/d/BB1E1/view"
+              }
+            },
+            "2": {
+              "title": "Cat's in the Bag...",
+              "description": "Walter y Jesse lidian con las consecuencias.",
+              "url": "https://ejemplo.com/bb/s1e2.mp4",
+              "duration": "48 min",
+              "sources": {
+                "mega": "https://mega.nz/file/BB1E2#KEY",
+                "gdrive": "https://drive.google.com/file/d/BB1E2/view"
+              }
+            },
+            "3": {
+              "title": "...And the Bag's in the River",
+              "description": "Walter debe tomar una decisión difícil.",
+              "url": "https://ejemplo.com/bb/s1e3.mp4",
+              "duration": "48 min",
+              "sources": {
+                "mega": "https://mega.nz/file/BB1E3#KEY",
+                "gdrive": "https://drive.google.com/file/d/BB1E3/view"
+              }
+            }
+          }
+        },
+        "2": {
+          "title": "Temporada 2",
+          "year": 2009,
+          "episodes": 13,
+          "episodes_data": {
+            "1": {
+              "title": "Seven Thirty-Seven",
+              "description": "Walter planea expandir el negocio.",
+              "url": "https://ejemplo.com/bb/s2e1.mp4",
+              "duration": "47 min",
+              "sources": {
+                "mega": "https://mega.nz/file/BB2E1#KEY",
+                "gdrive": "https://drive.google.com/file/d/BB2E1/view"
+              }
+            },
+            "2": {
+              "title": "Grilled",
+              "description": "Walter y Jesse enfrentan a Tuco.",
+              "url": "https://ejemplo.com/bb/s2e2.mp4",
+              "duration": "47 min",
+              "sources": {
+                "mega": "https://mega.nz/file/BB2E2#KEY",
+                "gdrive": "https://drive.google.com/file/d/BB2E2/view"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": 2,
+      "title": "Stranger Things",
+      "description": "Un grupo de niños enfrenta fuerzas sobrenaturales en los años 80.",
+      "poster": "https://ejemplo.com/posters/stranger-things.jpg",
+      "year": 2016,
+      "genre": "Ciencia Ficción",
+      "rating": 8.7,
+      "status": "En emisión",
+      "totalSeasons": 4,
+      "totalEpisodes": 34,
+      "addedDate": "2024-08-04T00:00:00.000Z",
+      "seasons": {
+        "1": {
+          "title": "Temporada 1",
+          "year": 2016,
+          "episodes": 8,
+          "episodes_data": {
+            "1": {
+              "title": "Chapter One: The Vanishing of Will Byers",
+              "description": "Will Byers desaparece misteriosamente.",
+              "url": "https://ejemplo.com/st/s1e1.mp4",
+              "duration": "47 min",
+              "sources": {
+                "mega": "https://mega.nz/file/ST1E1#KEY",
+                "gdrive": "https://drive.google.com/file/d/ST1E1/view"
+              }
+            },
+            "2": {
+              "title": "Chapter Two: The Weirdo on Maple Street",
+              "description": "Los niños encuentran a Eleven.",
+              "url": "https://ejemplo.com/st/s1e2.mp4",
+              "duration": "55 min",
+              "sources": {
+                "mega": "https://mega.nz/file/ST1E2#KEY",
+                "gdrive": "https://drive.google.com/file/d/ST1E2/view"
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "categories": [
+    {
+      "id": "action",
+      "name": "Acción",
+      "description": "Películas y series llenas de adrenalina"
+    },
+    {
+      "id": "drama",
+      "name": "Drama",
+      "description": "Historias emotivas y profundas"
+    },
+    {
+      "id": "sci-fi",
+      "name": "Ciencia Ficción",
+      "description": "Exploración de futuros posibles y tecnología"
+    },
+    {
+      "id": "thriller",
+      "name": "Thriller",
+      "description": "Suspense y tensión constante"
+    },
+    {
+      "id": "comedy",
+      "name": "Comedia",
+      "description": "Entretenimiento ligero y divertido"
+    }
+  ],
+  "sources_info": {
+    "mega": {
+      "name": "Mega",
+      "description": "Servicio de almacenamiento en la nube",
+      "icon": "🔵",
+      "requires_proxy": true
+    },
+    "gdrive": {
+      "name": "Google Drive",
+      "description": "Almacenamiento de Google",
+      "icon": "📁",
+      "requires_proxy": false
+    },
+    "dropbox": {
+      "name": "Dropbox",
+      "description": "Plataforma de almacenamiento",
+      "icon": "📦",
+      "requires_proxy": false
+    },
+    "direct": {
+      "name": "Enlace Directo",
+      "description": "URL directa al archivo de video",
+      "icon": "🎬",
+      "requires_proxy": false
+    }
+  },
+  "settings": {
+    "default_quality": "720p",
+    "auto_play": true,
+    "default_theme": "dark",
+    "default_speed": 1.0,
+    "show_descriptions": true,
+    "enable_keyboard_shortcuts": true,
+    "preferred_source": "gdrive",
+    "fallback_sources": ["mega", "dropbox", "direct"]
+  }
+}
