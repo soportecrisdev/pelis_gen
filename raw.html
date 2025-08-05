@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gen Zenit - Raw JSON</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Courier New', monospace;
+            background: #0a0a0a;
+            color: #00ff88;
+            padding: 20px;
+            line-height: 1.4;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 15px;
+            border-bottom: 2px solid #00ff88;
+        }
+        
+        .header h1 {
+            color: #00d4ff;
+            margin-bottom: 5px;
+        }
+        
+        .header p {
+            color: #888;
+            font-size: 0.9rem;
+        }
+        
+        .json-container {
+            background: #111;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 20px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .stat {
+            color: #00d4ff;
+        }
+        
+        .stat span {
+            color: #fff;
+            font-weight: bold;
+        }
+        
+        .actions {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .btn {
+            background: #00ff88;
+            color: #000;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: inherit;
+            margin: 0 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: #00d4ff;
+        }
+        
+        .copy-success {
+            color: #00ff88;
+            margin-left: 10px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .copy-success.show {
+            opacity: 1;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .stats {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+            
+            .json-container {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Gen Zenit - Raw JSON</h1>
+        <p>Datos actualizados automáticamente | Autor: CrisDEV</p>
+    </div>
+    
+    <div class="stats">
+        <div class="stat">Películas: <span id="movieCount">0</span></div>
+        <div class="stat">Series: <span id="seriesCount">0</span></div>
+        <div class="stat">Episodios: <span id="episodeCount">0</span></div>
+        <div class="stat">Última actualización: <span id="lastUpdate">-</span></div>
+    </div>
+    
+    <div class="actions">
+        <button class="btn" onclick="copyJSON()">📋 Copiar JSON</button>
+        <button class="btn" onclick="downloadJSON()">⬇️ Descargar</button>
+        <button class="btn" onclick="refreshData()">🔄 Actualizar</button>
+        <span class="copy-success" id="copySuccess">✓ Copiado</span>
+    </div>
+    
+    <div class="json-container" id="jsonOutput">
+        {"movies": [], "series": []}
+    </div>
+
+    <script>
+        // Cargar datos desde localStorage o desde el generador principal
+        function loadData() {
+            let data = { movies: [], series: [] };
+            
+            try {
+                // Intentar cargar desde localStorage
+                const savedData = localStorage.getItem('genZenitData');
+                if (savedData) {
+                    data = JSON.parse(savedData);
+                }
+                
+                // Si estamos en la misma ventana/pestaña, intentar obtener desde window.parent
+                if (window.parent && window.parent.getGenZenitData) {
+                    data = window.parent.getGenZenitData();
+                }
+            } catch (e) {
+                console.error('Error al cargar datos:', e);
+            }
+            
+            return data;
+        }
+        
+        function updateDisplay() {
+            const data = loadData();
+            
+            // Actualizar estadísticas
+            const movieCount = data.movies.length;
+            const seriesCount = data.series.length;
+            let episodeCount = 0;
+            
+            data.series.forEach(series => {
+                series.seasons.forEach(season => {
+                    episodeCount += season.episodes.length;
+                });
+            });
+            
+            document.getElementById('movieCount').textContent = movieCount;
+            document.getElementById('seriesCount').textContent = seriesCount;
+            document.getElementById('episodeCount').textContent = episodeCount;
+            document.getElementById('lastUpdate').textContent = new Date().toLocaleString();
+            
+            // Mostrar JSON formateado
+            const jsonOutput = document.getElementById('jsonOutput');
+            jsonOutput.textContent = JSON.stringify(data, null, 2);
+        }
+        
+        function copyJSON() {
+            const data = loadData();
+            const jsonText = JSON.stringify(data, null, 2);
+            
+            navigator.clipboard.writeText(jsonText).then(() => {
+                const copySuccess = document.getElementById('copySuccess');
+                copySuccess.classList.add('show');
+                setTimeout(() => {
+                    copySuccess.classList.remove('show');
+                }, 2000);
+            }).catch(err => {
+                console.error('Error al copiar:', err);
+                // Fallback para navegadores más antiguos
+                const textArea = document.createElement('textarea');
+                textArea.value = jsonText;
+                document.body.appendChild(textArea);
+                textArea.select();
+                try {
+                    document.execCommand('copy');
+                    const copySuccess = document.getElementById('copySuccess');
+                    copySuccess.classList.add('show');
+                    setTimeout(() => {
+                        copySuccess.classList.remove('show');
+                    }, 2000);
+                } catch (err) {
+                    console.error('Fallback copy failed:', err);
+                }
+                document.body.removeChild(textArea);
+            });
+        }
+        
+        function downloadJSON() {
+            const data = loadData();
+            const jsonText = JSON.stringify(data, null, 2);
+            const blob = new Blob([jsonText], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'content.json';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+        
+        function refreshData() {
+            updateDisplay();
+        }
+        
+        // Inicializar
+        updateDisplay();
+        
+        // Auto-actualizar cada 5 segundos
+        setInterval(updateDisplay, 5000);
+        
+        // Escuchar cambios en localStorage
+        window.addEventListener('storage', function(e) {
+            if (e.key === 'genZenitData') {
+                updateDisplay();
+            }
+        });
+        
+        // Función global para ser accedida desde otras ventanas
+        window.getGenZenitRawData = function() {
+            return loadData();
+        };
+    </script>
+</body>
+</html>
