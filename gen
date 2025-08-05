@@ -1,250 +1,217 @@
 {
-  "zenit_config": {
-    "version": "1.0.0",
-    "updated": "2024-08-04T00:00:00.000Z",
-    "app_info": {
-      "name": "Zenit Player",
-      "description": "Reproductor avanzado de videos para múltiples servicios",
-      "repository": "https://github.com/soportecrisdev/pelis_gen.git",
-      "homepage": "https://soportecrisdev.github.io/pelis_gen/"
-    }
-  },
   "movies": [
     {
-      "id": 1,
-      "title": "The Matrix",
-      "description": "Un programador descubre que la realidad es una simulación controlada por máquinas.",
-      "url": "https://ejemplo.com/matrix.mp4",
-      "poster": "https://ejemplo.com/posters/matrix.jpg",
-      "year": 1999,
-      "genre": "Ciencia Ficción",
-      "rating": 8.7,
-      "duration": "136 min",
-      "addedDate": "2024-08-04T00:00:00.000Z",
-      "sources": {
-        "mega": "https://mega.nz/file/EXAMPLE#KEY",
-        "gdrive": "https://drive.google.com/file/d/EXAMPLE/view",
-        "dropbox": "https://www.dropbox.com/s/EXAMPLE/matrix.mp4?dl=0"
-      }
-    },
-    {
-      "id": 2,
-      "title": "Inception",
-      "description": "Un ladrón que roba secretos del subconsciente debe realizar la tarea imposible de la 'incepción'.",
-      "url": "https://ejemplo.com/inception.mp4",
-      "poster": "https://ejemplo.com/posters/inception.jpg",
-      "year": 2010,
-      "genre": "Thriller",
-      "rating": 8.8,
-      "duration": "148 min",
-      "addedDate": "2024-08-04T00:00:00.000Z",
-      "sources": {
-        "mega": "https://mega.nz/file/EXAMPLE2#KEY2",
-        "gdrive": "https://drive.google.com/file/d/EXAMPLE2/view"
-      }
-    },
-    {
-      "id": 3,
-      "title": "Interstellar",
-      "description": "Un grupo de exploradores viaja a través de un agujero de gusano en el espacio.",
-      "url": "https://ejemplo.com/interstellar.mp4",
-      "poster": "https://ejemplo.com/posters/interstellar.jpg",
-      "year": 2014,
-      "genre": "Ciencia Ficción",
-      "rating": 8.6,
-      "duration": "169 min",
-      "addedDate": "2024-08-04T00:00:00.000Z",
-      "sources": {
-        "mega": "https://mega.nz/file/EXAMPLE3#KEY3",
-        "gdrive": "https://drive.google.com/file/d/EXAMPLE3/view",
-        "direct": "https://servidor-directo.com/interstellar.mp4"
-      }
+      "id": 1754420442552,
+      "title": "Transformers",
+      "year": 2007,
+      "genre": "Acción, Ciencia Fisión",
+      "director": "",
+      "duration": 143,
+      "rating": "",
+      "synopsis": "Una antigua guerra entre Autobots y Decepticons toma la Tierra como escenario, donde un adolescente tiene la clave para el poder definitivo.",
+      "poster": "https://www.imdb.com/es/title/tt0418279/mediaviewer/rm1758532608/?ref_=tt_ov_i",
+      "trailer": "https://youtu.be/CbX_SIz_9fk?si=e3lJ4j82UsMnPE7T",
+      "servers": [
+        {
+          "name": "MEGA",
+          "url": "https://mega.nz/file/xB5ASDqB#weM7psylzjbQoJ1TwZ12BgOMs2CAlCWRUtJZkT_-BVA",
+          "language": "Español",
+          "quality": "HD"
+        }
+      ],
+      "dateAdded": "2025-08-05T19:00:42.552Z"
     }
   ],
   "series": [
     {
-      "id": 1,
-      "title": "Breaking Bad",
-      "description": "Un profesor de química se convierte en productor de metanfetaminas.",
-      "poster": "https://ejemplo.com/posters/breaking-bad.jpg",
-      "year": 2008,
-      "genre": "Drama",
-      "rating": 9.5,
-      "status": "Finalizada",
-      "totalSeasons": 5,
-      "totalEpisodes": 62,
-      "addedDate": "2024-08-04T00:00:00.000Z",
-      "seasons": {
-        "1": {
-          "title": "Temporada 1",
-          "year": 2008,
-          "episodes": 7,
-          "episodes_data": {
-            "1": {
-              "title": "Pilot",
-              "description": "Walter White entra al mundo de las drogas.",
-              "url": "https://ejemplo.com/bb/s1e1.mp4",
-              "duration": "58 min",
-              "sources": {
-                "mega": "https://mega.nz/file/BB1E1#KEY",
-                "gdrive": "https://drive.google.com/file/d/BB1E1/view"
-              }
-            },
-            "2": {
-              "title": "Cat's in the Bag...",
-              "description": "Walter y Jesse lidian con las consecuencias.",
-              "url": "https://ejemplo.com/bb/s1e2.mp4",
-              "duration": "48 min",
-              "sources": {
-                "mega": "https://mega.nz/file/BB1E2#KEY",
-                "gdrive": "https://drive.google.com/file/d/BB1E2/view"
-              }
-            },
-            "3": {
-              "title": "...And the Bag's in the River",
-              "description": "Walter debe tomar una decisión difícil.",
-              "url": "https://ejemplo.com/bb/s1e3.mp4",
-              "duration": "48 min",
-              "sources": {
-                "mega": "https://mega.nz/file/BB1E3#KEY",
-                "gdrive": "https://drive.google.com/file/d/BB1E3/view"
-              }
-            }
-          }
-        },
-        "2": {
-          "title": "Temporada 2",
-          "year": 2009,
-          "episodes": 13,
-          "episodes_data": {
-            "1": {
-              "title": "Seven Thirty-Seven",
-              "description": "Walter planea expandir el negocio.",
-              "url": "https://ejemplo.com/bb/s2e1.mp4",
-              "duration": "47 min",
-              "sources": {
-                "mega": "https://mega.nz/file/BB2E1#KEY",
-                "gdrive": "https://drive.google.com/file/d/BB2E1/view"
-              }
-            },
-            "2": {
-              "title": "Grilled",
-              "description": "Walter y Jesse enfrentan a Tuco.",
-              "url": "https://ejemplo.com/bb/s2e2.mp4",
-              "duration": "47 min",
-              "sources": {
-                "mega": "https://mega.nz/file/BB2E2#KEY",
-                "gdrive": "https://drive.google.com/file/d/BB2E2/view"
-              }
-            }
-          }
-        }
-      }
-    },
-    {
-      "id": 2,
-      "title": "Stranger Things",
-      "description": "Un grupo de niños enfrenta fuerzas sobrenaturales en los años 80.",
-      "poster": "https://ejemplo.com/posters/stranger-things.jpg",
-      "year": 2016,
-      "genre": "Ciencia Ficción",
-      "rating": 8.7,
+      "id": 1754422563919,
+      "title": "Solo Leveling",
+      "year": 2024,
+      "genre": "Aniación",
+      "creator": "Chu-Gong",
       "status": "En emisión",
-      "totalSeasons": 4,
-      "totalEpisodes": 34,
-      "addedDate": "2024-08-04T00:00:00.000Z",
-      "seasons": {
-        "1": {
-          "title": "Temporada 1",
-          "year": 2016,
-          "episodes": 8,
-          "episodes_data": {
-            "1": {
-              "title": "Chapter One: The Vanishing of Will Byers",
-              "description": "Will Byers desaparece misteriosamente.",
-              "url": "https://ejemplo.com/st/s1e1.mp4",
-              "duration": "47 min",
-              "sources": {
-                "mega": "https://mega.nz/file/ST1E1#KEY",
-                "gdrive": "https://drive.google.com/file/d/ST1E1/view"
-              }
+      "rating": "",
+      "synopsis": "Lo que no te mata te hace más fuerte, pero en el caso de Sung Jinwoo, lo que lo mató lo hizo más fuerte. Después de ser brutalmente asesinado por monstruos en una mazmorra de alto rango, Jinwoo regresó con el Sistema, un programa que solo él puede ver y que eleva su nivel en todos los sentidos. Ahora, está decidido a descubrir los secretos detrás de sus poderes y la mazmorra que los engendró.",
+      "poster": "https://m.media-amazon.com/images/S/pv-target-images/aefc2a3629eb860124527a3529e7a7b111cab1e82f077825618e0839c66d81c1.jpg",
+      "trailer": "https://youtu.be/Kjta12rmtkA?si=wHAvfUjoekqZU3ue",
+      "seasons": [
+        {
+          "number": 1,
+          "year": 2024,
+          "description": "Lo que no te mata te hace más fuerte, pero en el caso de Sung Jinwoo, lo que lo mató lo hizo más fuerte. Después de ser brutalmente asesinado por monstruos en una mazmorra de alto rango, Jinwoo regresó con el Sistema, un programa que solo él puede ver y que eleva su nivel en todos los sentidos. Ahora, está decidido a descubrir los secretos detrás de sus poderes y la mazmorra que los engendró.",
+          "episodes": [
+            {
+              "number": 1,
+              "title": "E1 - Ya estoy acostumbrado",
+              "duration": 23,
+              "synopsis": "A Jin-Woo Sung lo conocen el cazador más débil de la humanidad, lo que lo convierte en objeto de burla de sus compañeros, aunque Ju-Hee Lee, una joven sanadora, siempre se preocupa por él y le ayuda a hacer amigos.",
+              "servers": [
+                {
+                  "name": "Google Drive",
+                  "url": "https://drive.google.com/file/d/1pThPJkFLt3lGVUfZ3RP22RDg239J28Ru/view?usp=sharing",
+                  "language": "Español",
+                  "quality": "4K"
+                }
+              ]
             },
-            "2": {
-              "title": "Chapter Two: The Weirdo on Maple Street",
-              "description": "Los niños encuentran a Eleven.",
-              "url": "https://ejemplo.com/st/s1e2.mp4",
-              "duration": "55 min",
-              "sources": {
-                "mega": "https://mega.nz/file/ST1E2#KEY",
-                "gdrive": "https://drive.google.com/file/d/ST1E2/view"
-              }
+            {
+              "number": 2,
+              "title": "E2 - Si tuviera otra oportunidad",
+              "duration": 24,
+              "synopsis": "Jin-Woo y sus compañeros están atrapados y no pueden hacer nada mientras la estatua de piedra los masacra uno a uno. Parece que hay una salida a este pérfido juego, pero ¿a qué precio?",
+              "servers": [
+                {
+                  "name": "Google Drive",
+                  "url": "https://drive.google.com/file/d/1NvYkzVmxkhoxF6y9YluQgpCBvthLJLeU/view?usp=sharing",
+                  "language": "Español",
+                  "quality": "4K"
+                }
+              ]
+            },
+            {
+              "number": 3,
+              "title": "E3 - Es como un videojuego",
+              "duration": 24,
+              "synopsis": "Para su sorpresa, Jin-Woo se despierta sano y salvo en el hospital. Al principio cree que los horripilantes sucesos que ha vivido son un sueño, pero las pantallas de estado no desaparecen y no parecen ser visibles para nadie más.",
+              "servers": [
+                {
+                  "name": "Google Drive",
+                  "url": "https://drive.google.com/file/d/1NJW3HotZ069Z5IBoRL6WTeba1LxrIHVO/view?usp=sharing",
+                  "language": "Español",
+                  "quality": "4K"
+                }
+              ]
+            },
+            {
+              "number": 4,
+              "title": "E4 - Tengo que hacerme más fuerte",
+              "duration": 24,
+              "synopsis": "Jin-Woo está atrapado en la mazmorra. Debe despejar la mazmorra o salir de ella con una piedra de retorno. Como no la tiene, su única opción es luchar.",
+              "servers": [
+                {
+                  "name": "Google Drive",
+                  "url": "https://drive.google.com/file/d/1qFqTsMICZtlDmaLAFSEtUFB8vjBNHLuH/view?usp=sharing",
+                  "language": "Español",
+                  "quality": "4K"
+                }
+              ]
+            },
+            {
+              "number": 5,
+              "title": "E5 - Un muy buen trato",
+              "duration": 24,
+              "synopsis": "Cuando Jinwoo sale del hospital, las enfermeras se fijan en su buen estado físico. ¿Siempre tuvo tan buen cuerpo? Poco después, un grupo de Cazadores de rango C buscan un par de compañeros para rellenar y poder entrar a una mazmorra también C, así que como le ofrecen una buena cantidad, acepta.",
+              "servers": [
+                {
+                  "name": "Google Drive",
+                  "url": "https://drive.google.com/file/d/1OCU2VcVH_4xSZYkd3d025gx-u4ocwIW9/view?usp=sharing",
+                  "language": "Español",
+                  "quality": "4K"
+                }
+              ]
+            },
+            {
+              "number": 6,
+              "title": "E6 - Comienza la verdadera caza",
+              "duration": 24,
+              "synopsis": "Jinwoo cae en la trampa que su nuevo equipo temporal le tiende y tiene que sobrevivir como puede, una vez más, ante un monstruo mucho más poderoso que él. A su lado está Jinho, a quien también han abandonado.",
+              "servers": [
+                {
+                  "name": "Google Drive",
+                  "url": "https://drive.google.com/file/d/1ra4-l8JwJqKZSqTqmCLRetbyhAzUeMxT/view?usp=sharing",
+                  "language": "Español",
+                  "quality": "4K"
+                }
+              ]
+            },
+            {
+              "number": 7,
+              "title": "E7 - Veamos hasta dónde puedo llegar",
+              "duration": 24,
+              "synopsis": "Tras el incidente en la mazmorra de rango C, Jinwoo sigue con su vida como siempre, aunque su hermana no acaba de creer la gran evolución de su hermano",
+              "servers": [
+                {
+                  "name": "Google Drive",
+                  "url": "https://drive.google.com/file/d/1FygfAkBiT6sSxbbcYYsVksNIHM8Gu6fS/view?usp=sharing",
+                  "language": "Español",
+                  "quality": "4K"
+                }
+              ]
+            },
+            {
+              "number": 8,
+              "title": "E8 - Esto es frustrante",
+              "duration": 24,
+              "synopsis": "Tras su última incursión en una mazmorra, Jinwoo se ha dado cuenta de su propia debilidad. Quiere subir de nivel lo antes posible, pero eso podrá hacerlo si consigue entrar en las mazmorras.",
+              "servers": [
+                {
+                  "name": "Google Drive",
+                  "url": "https://drive.google.com/file/d/19hkcYBkAoeoikFm9uMuEZnrNtBFWXZ1e/view?usp=sharing",
+                  "language": "Español",
+                  "quality": "4K"
+                }
+              ]
+            },
+            {
+              "number": 9,
+              "title": "E9 - Has estado ocultando tus habilidades",
+              "duration": 24,
+              "synopsis": "El grupo de supervivientes de la mazmorra doble entra en la mazmorra junto a los presos condenados y Kang Taeshik, el cazador encargado de supervisar a los prisioneros. Sin embargo, lo que parecía un viaje normal a una mazmorra acaba siendo un río de sangre.",
+              "servers": [
+                {
+                  "name": "Google Drive",
+                  "url": "https://drive.google.com/file/d/1qpfXp8sEBAb6EqEyhaW1JxGP4wIm-7-g/view?usp=sharing",
+                  "language": "Español",
+                  "quality": "4K"
+                }
+              ]
+            },
+            {
+              "number": 10,
+              "title": "E10 - ¿Qué es esto, un pícnic?",
+              "duration": 24,
+              "synopsis": "Jinwoo y Jinho preparan un grupo repleto de figurantes para entrar ellos solos a las mazmorras y conseguir dinero, pero esto hace que Tigre Blanco se fije en las posibles capacidades de Jinwoo y sospechen de que vivió un segundo despertar.",
+              "servers": [
+                {
+                  "name": "Google Drive",
+                  "url": "https://drive.google.com/file/d/1AxeXKWDj9iTxj78MukN-BStNbLwN387T/view?usp=sharing",
+                  "language": "Español",
+                  "quality": "4K"
+                }
+              ]
+            },
+            {
+              "number": 11,
+              "title": "E11 - Un caballero defendiendo un trono vacío",
+              "duration": 24,
+              "synopsis": "Sung Jinwoo inicia la misión para cambiar de clase y se enfrenta a un enemigo formidable. Mientras, Jinho se reúne con su familia y otros cazadores visitan la isla de Jeju.",
+              "servers": [
+                {
+                  "name": "Google Drive",
+                  "url": "https://drive.google.com/file/d/1SAdCicbP1wUWlDqyUM8Q8hTHFs61h9fe/view?usp=sharing",
+                  "language": "Español",
+                  "quality": "4K"
+                }
+              ]
+            },
+            {
+              "number": 12,
+              "title": "E12 - Surge",
+              "duration": 24,
+              "synopsis": "Mientras Jinwoo se enfrenta a sí mismo e intenta completar el cambio de clase, Choi Jong-in y los cazadores que lo acompañan descubren algo en la isla de Jeju.",
+              "servers": [
+                {
+                  "name": "Google Drive",
+                  "url": "https://drive.google.com/file/d/1UsGsDD0aQGLllqM9TMH_CzWsvkBbECp7/view?usp=sharing",
+                  "language": "Español",
+                  "quality": "4K"
+                }
+              ]
             }
-          }
+          ]
         }
-      }
+      ],
+      "dateAdded": "2025-08-05T19:36:03.919Z"
     }
-  ],
-  "categories": [
-    {
-      "id": "action",
-      "name": "Acción",
-      "description": "Películas y series llenas de adrenalina"
-    },
-    {
-      "id": "drama",
-      "name": "Drama",
-      "description": "Historias emotivas y profundas"
-    },
-    {
-      "id": "sci-fi",
-      "name": "Ciencia Ficción",
-      "description": "Exploración de futuros posibles y tecnología"
-    },
-    {
-      "id": "thriller",
-      "name": "Thriller",
-      "description": "Suspense y tensión constante"
-    },
-    {
-      "id": "comedy",
-      "name": "Comedia",
-      "description": "Entretenimiento ligero y divertido"
-    }
-  ],
-  "sources_info": {
-    "mega": {
-      "name": "Mega",
-      "description": "Servicio de almacenamiento en la nube",
-      "icon": "🔵",
-      "requires_proxy": true
-    },
-    "gdrive": {
-      "name": "Google Drive",
-      "description": "Almacenamiento de Google",
-      "icon": "📁",
-      "requires_proxy": false
-    },
-    "dropbox": {
-      "name": "Dropbox",
-      "description": "Plataforma de almacenamiento",
-      "icon": "📦",
-      "requires_proxy": false
-    },
-    "direct": {
-      "name": "Enlace Directo",
-      "description": "URL directa al archivo de video",
-      "icon": "🎬",
-      "requires_proxy": false
-    }
-  },
-  "settings": {
-    "default_quality": "720p",
-    "auto_play": true,
-    "default_theme": "dark",
-    "default_speed": 1.0,
-    "show_descriptions": true,
-    "enable_keyboard_shortcuts": true,
-    "preferred_source": "gdrive",
-    "fallback_sources": ["mega", "dropbox", "direct"]
-  }
+  ]
 }
