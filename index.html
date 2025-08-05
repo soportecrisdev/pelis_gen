@@ -4,316 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gen Zenit - Generador de Contenido</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
-            color: #ffffff;
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        .header {
-            text-align: center;
-            margin-bottom: 40px;
-            padding: 30px 0;
-            background: rgba(0, 123, 255, 0.1);
-            border-radius: 15px;
-            border: 2px solid rgba(0, 123, 255, 0.3);
-            backdrop-filter: blur(10px);
-        }
-
-        .header h1 {
-            font-size: 3rem;
-            background: linear-gradient(45deg, #007bff, #00d4ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 10px;
-            text-shadow: 0 0 30px rgba(0, 123, 255, 0.5);
-        }
-
-        .header p {
-            color: #b3d9ff;
-            font-size: 1.1rem;
-        }
-
-        .tabs {
-            display: flex;
-            margin-bottom: 30px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-            padding: 5px;
-        }
-
-        .tab {
-            flex: 1;
-            padding: 15px 20px;
-            background: transparent;
-            border: none;
-            color: #ffffff;
-            cursor: pointer;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-        }
-
-        .tab.active {
-            background: linear-gradient(45deg, #007bff, #0056b3);
-            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
-        }
-
-        .tab:hover:not(.active) {
-            background: rgba(0, 123, 255, 0.2);
-        }
-
-        .tab-content {
-            display: none;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 30px;
-            border-radius: 15px;
-            border: 1px solid rgba(0, 123, 255, 0.3);
-            backdrop-filter: blur(10px);
-        }
-
-        .tab-content.active {
-            display: block;
-            animation: fadeIn 0.5s ease-in;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-row {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .form-row .form-group {
-            flex: 1;
-            min-width: 200px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            color: #b3d9ff;
-            font-weight: bold;
-        }
-
-        input, select, textarea {
-            width: 100%;
-            padding: 12px 15px;
-            background: rgba(0, 0, 0, 0.3);
-            border: 2px solid rgba(0, 123, 255, 0.3);
-            border-radius: 8px;
-            color: #ffffff;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        input:focus, select:focus, textarea:focus {
-            outline: none;
-            border-color: #007bff;
-            box-shadow: 0 0 10px rgba(0, 123, 255, 0.3);
-        }
-
-        textarea {
-            resize: vertical;
-            min-height: 100px;
-        }
-
-        .btn {
-            padding: 12px 25px;
-            background: linear-gradient(45deg, #007bff, #0056b3);
-            border: none;
-            border-radius: 8px;
-            color: white;
-            cursor: pointer;
-            font-size: 1rem;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            margin-right: 10px;
-            margin-bottom: 10px;
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 123, 255, 0.4);
-        }
-
-        .btn-secondary {
-            background: linear-gradient(45deg, #6c757d, #495057);
-        }
-
-        .btn-danger {
-            background: linear-gradient(45deg, #dc3545, #c82333);
-        }
-
-        .servers-container {
-            background: rgba(0, 0, 0, 0.2);
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 15px;
-        }
-
-        .server-item {
-            background: rgba(0, 123, 255, 0.1);
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            border: 1px solid rgba(0, 123, 255, 0.3);
-        }
-
-        .server-row {
-            display: flex;
-            gap: 15px;
-            align-items: end;
-            flex-wrap: wrap;
-        }
-
-        .server-row .form-group {
-            flex: 1;
-            min-width: 150px;
-            margin-bottom: 0;
-        }
-
-        .seasons-container {
-            margin-top: 20px;
-        }
-
-        .season-item {
-            background: rgba(0, 0, 0, 0.3);
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            border: 2px solid rgba(0, 123, 255, 0.2);
-        }
-
-        .season-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-
-        .season-title {
-            color: #00d4ff;
-            font-size: 1.3rem;
-            font-weight: bold;
-        }
-
-        .episodes-container {
-            margin-top: 15px;
-        }
-
-        .episode-item {
-            background: rgba(0, 123, 255, 0.05);
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            border-left: 4px solid #007bff;
-        }
-
-        .episode-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-
-        .json-output {
-            background: rgba(0, 0, 0, 0.5);
-            padding: 20px;
-            border-radius: 10px;
-            border: 2px solid rgba(0, 123, 255, 0.3);
-            margin-top: 20px;
-        }
-
-        .json-output pre {
-            color: #00ff88;
-            font-family: 'Courier New', monospace;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-            max-height: 400px;
-            overflow-y: auto;
-        }
-
-        .copy-btn {
-            position: relative;
-            margin-top: 10px;
-        }
-
-        .toast {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: linear-gradient(45deg, #28a745, #20c997);
-            color: white;
-            padding: 15px 20px;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            z-index: 1000;
-            transform: translateX(400px);
-            transition: transform 0.3s ease;
-        }
-
-        .toast.show {
-            transform: translateX(0);
-        }
-
-        select option {
-            background: #1a1a2e;
-            color: #ffffff;
-        }
-
-        .add-section {
-            text-align: center;
-            margin: 20px 0;
-        }
-
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2rem;
-            }
-            
-            .form-row {
-                flex-direction: column;
-            }
-            
-            .server-row {
-                flex-direction: column;
-            }
-            
-            .season-header {
-                flex-direction: column;
-                gap: 10px;
-            }
-            
-            .episode-header {
-                flex-direction: column;
-                gap: 10px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
@@ -323,14 +14,75 @@
         </div>
 
         <div class="tabs">
-            <button class="tab active" onclick="showTab('movies')">Películas</button>
-            <button class="tab" onclick="showTab('series')">Series</button>
-            <button class="tab" onclick="showTab('json')">JSON Generado</button>
+            <button class="tab active" onclick="showTab('content')">📚 Contenido</button>
+            <button class="tab" onclick="showTab('movies')">🎬 Películas</button>
+            <button class="tab" onclick="showTab('series')">📺 Series</button>
+            <button class="tab" onclick="showTab('settings')">⚙️ Configuración</button>
+        </div>
+
+        <!-- Tab Contenido Cargado -->
+        <div id="content" class="tab-content active">
+            <div class="content-header">
+                <h2>📚 Contenido Cargado</h2>
+                <div class="content-actions">
+                    <button class="btn" onclick="openRawJSON()">🔗 Ver Raw JSON</button>
+                    <button class="btn btn-secondary" onclick="downloadJSON()">⬇️ Descargar</button>
+                    <button class="btn" onclick="importJSON()">📁 Importar</button>
+                </div>
+            </div>
+
+            <!-- Estadísticas -->
+            <div class="stats-container">
+                <div class="stat-card">
+                    <div class="stat-number" id="movieCount">0</div>
+                    <div class="stat-label">Películas</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="seriesCount">0</div>
+                    <div class="stat-label">Series</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="episodeCount">0</div>
+                    <div class="stat-label">Episodios</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="serverCount">0</div>
+                    <div class="stat-label">Servidores</div>
+                </div>
+            </div>
+
+            <!-- Lista de Películas -->
+            <div class="content-section">
+                <div class="section-header">
+                    <h3>🎬 Películas</h3>
+                    <button class="btn btn-small" onclick="showTab('movies')">+ Agregar</button>
+                </div>
+                <div id="moviesList" class="content-list">
+                    <div class="empty-state">
+                        <p>No hay películas agregadas</p>
+                        <button class="btn" onclick="showTab('movies')">Agregar Primera Película</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lista de Series -->
+            <div class="content-section">
+                <div class="section-header">
+                    <h3>📺 Series</h3>
+                    <button class="btn btn-small" onclick="showTab('series')">+ Agregar</button>
+                </div>
+                <div id="seriesList" class="content-list">
+                    <div class="empty-state">
+                        <p>No hay series agregadas</p>
+                        <button class="btn" onclick="showTab('series')">Agregar Primera Serie</button>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- Tab Películas -->
-        <div id="movies" class="tab-content active">
-            <h2 style="margin-bottom: 20px; color: #00d4ff;">Agregar Película</h2>
+        <div id="movies" class="tab-content">
+            <h2>🎬 Agregar Película</h2>
             
             <div class="form-row">
                 <div class="form-group">
@@ -385,7 +137,7 @@
                 </div>
             </div>
 
-            <h3 style="margin: 20px 0; color: #b3d9ff;">Servidores de Reproducción</h3>
+            <h3>Servidores de Reproducción</h3>
             <div id="movieServers" class="servers-container">
                 <!-- Los servidores se agregan dinámicamente -->
             </div>
@@ -393,14 +145,15 @@
                 <button class="btn" onclick="addMovieServer()">+ Agregar Servidor</button>
             </div>
 
-            <div style="text-align: center; margin-top: 30px;">
+            <div class="form-actions">
                 <button class="btn" onclick="addMovie()">Agregar Película</button>
+                <button class="btn btn-secondary" onclick="clearMovieForm()">Limpiar</button>
             </div>
         </div>
 
         <!-- Tab Series -->
         <div id="series" class="tab-content">
-            <h2 style="margin-bottom: 20px; color: #00d4ff;">Agregar Serie</h2>
+            <h2>📺 Agregar Serie</h2>
             
             <div class="form-row">
                 <div class="form-group">
@@ -461,7 +214,7 @@
                 </div>
             </div>
 
-            <h3 style="margin: 20px 0; color: #b3d9ff;">Temporadas y Episodios</h3>
+            <h3>Temporadas y Episodios</h3>
             <div id="seasonsContainer" class="seasons-container">
                 <!-- Las temporadas se agregan dinámicamente -->
             </div>
@@ -469,853 +222,95 @@
                 <button class="btn" onclick="addSeason()">+ Agregar Temporada</button>
             </div>
 
-            <div style="text-align: center; margin-top: 30px;">
+            <div class="form-actions">
                 <button class="btn" onclick="addSeries()">Agregar Serie</button>
+                <button class="btn btn-secondary" onclick="clearSeriesForm()">Limpiar</button>
             </div>
         </div>
 
-        <!-- Tab JSON -->
-        <div id="json" class="tab-content">
-            <h2 style="margin-bottom: 20px; color: #00d4ff;">JSON Generado</h2>
+        <!-- Tab Configuración -->
+        <div id="settings" class="tab-content">
+            <h2>⚙️ Configuración</h2>
             
-            <!-- Configuración de Auto-guardado -->
-            <div style="background: rgba(0, 123, 255, 0.1); padding: 20px; border-radius: 10px; margin-bottom: 20px; border: 1px solid rgba(0, 123, 255, 0.3);">
-                <h3 style="color: #00d4ff; margin-bottom: 15px;">⚙️ Configuración de Auto-guardado</h3>
+            <div class="settings-section">
+                <h3>🔗 Configuración del JSON</h3>
+                <div class="form-group">
+                    <label>URL del Raw JSON</label>
+                    <input type="text" id="rawUrl" readonly>
+                    <small>Esta URL se genera automáticamente para compartir tu contenido</small>
+                </div>
                 
                 <div class="form-row">
                     <div class="form-group">
-                        <label>URL del Repositorio GitHub</label>
-                        <input type="url" id="githubRepoUrl" placeholder="https://username.github.io/repository-name/" style="margin-bottom: 10px;">
-                        <small style="color: #b3d9ff;">URL donde se desplegará tu página (GitHub Pages)</small>
+                        <label>Nombre del archivo JSON</label>
+                        <input type="text" id="jsonFileName" value="content.json">
                     </div>
                     <div class="form-group">
-                        <label>Nombre del archivo JSON</label>
-                        <input type="text" id="jsonFileName" value="content.json" placeholder="content.json">
-                        <small style="color: #b3d9ff;">Nombre del archivo que leerá tu página</small>
+                        <label>
+                            <input type="checkbox" id="autoUpdate" checked style="width: auto; margin-right: 10px;">
+                            Actualización automática
+                        </label>
                     </div>
                 </div>
+            </div>
 
-                <div class="form-group">
-                    <label>
-                        <input type="checkbox" id="autoSync" style="width: auto; margin-right: 10px;">
-                        Sincronización automática (guarda cada cambio inmediatamente)
-                    </label>
+            <div class="settings-section">
+                <h3>📊 Información del Sistema</h3>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <label>Última actualización:</label>
+                        <span id="lastUpdate">-</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Tamaño del archivo:</label>
+                        <span id="fileSize">0 KB</span>
+                    </div>
+                    <div class="info-item">
+                        <label>Total de servidores:</label>
+                        <span id="totalServers">0</span>
+                    </div>
                 </div>
+            </div>
 
-                <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 15px;">
-                    <button class="btn" onclick="saveToFile()">💾 Guardar como Archivo</button>
-                    <button class="btn btn-secondary" onclick="uploadToGitHub()">🚀 Subir a GitHub</button>
+            <div class="settings-section">
+                <h3>🔧 Acciones</h3>
+                <div class="action-buttons">
+                    <button class="btn" onclick="exportData()">📤 Exportar Todo</button>
+                    <button class="btn btn-secondary" onclick="importJSON()">📥 Importar</button>
                     <button class="btn" onclick="generateEmbedCode()">🔗 Código de Integración</button>
-                </div>
-            </div>
-
-            <!-- Estadísticas -->
-            <div style="background: rgba(0, 0, 0, 0.3); padding: 15px; border-radius: 10px; margin-bottom: 20px;">
-                <div class="form-row">
-                    <div style="text-align: center;">
-                        <div style="color: #00d4ff; font-size: 2rem; font-weight: bold;" id="movieCount">0</div>
-                        <div style="color: #b3d9ff;">Películas</div>
-                    </div>
-                    <div style="text-align: center;">
-                        <div style="color: #00d4ff; font-size: 2rem; font-weight: bold;" id="seriesCount">0</div>
-                        <div style="color: #b3d9ff;">Series</div>
-                    </div>
-                    <div style="text-align: center;">
-                        <div style="color: #00d4ff; font-size: 2rem; font-weight: bold;" id="episodeCount">0</div>
-                        <div style="color: #b3d9ff;">Episodios</div>
-                    </div>
-                    <div style="text-align: center;">
-                        <div style="color: #00d4ff; font-size: 1.2rem;" id="lastUpdate">-</div>
-                        <div style="color: #b3d9ff;">Última actualización</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="json-output">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                    <h3 style="color: #b3d9ff;">📄 Contenido JSON</h3>
-                    <div>
-                        <span style="color: #28a745; margin-right: 15px;" id="fileSize">0 KB</span>
-                        <span style="color: #007bff;" id="syncStatus">●</span>
-                    </div>
-                </div>
-                <pre id="jsonOutput">{"movies": [], "series": []}</pre>
-                <div style="margin-top: 15px;">
-                    <button class="btn copy-btn" onclick="copyJSON()">📋 Copiar JSON</button>
-                    <button class="btn btn-secondary" onclick="downloadJSON()">⬇️ Descargar JSON</button>
-                    <button class="btn" onclick="importJSON()">📁 Importar JSON</button>
-                    <button class="btn btn-danger" onclick="clearData()">🗑️ Limpiar Todo</button>
+                    <button class="btn btn-danger" onclick="clearAllData()">🗑️ Limpiar Todo</button>
                 </div>
             </div>
 
             <!-- Código de integración -->
-            <div id="embedCodeSection" style="display: none; margin-top: 20px; background: rgba(0, 0, 0, 0.5); padding: 20px; border-radius: 10px;">
-                <h3 style="color: #00d4ff; margin-bottom: 15px;">🔗 Código de Integración para tu Página</h3>
-                <p style="color: #b3d9ff; margin-bottom: 15px;">Usa este código en tu página web para cargar automáticamente el contenido:</p>
-                <pre id="embedCode" style="background: rgba(0, 0, 0, 0.7); padding: 15px; border-radius: 5px; color: #00ff88; overflow-x: auto;"></pre>
+            <div id="embedCodeSection" class="settings-section" style="display: none;">
+                <h3>🔗 Código de Integración</h3>
+                <p>Usa este código en tu página web para cargar el contenido:</p>
+                <pre id="embedCode"></pre>
                 <button class="btn" onclick="copyEmbedCode()">📋 Copiar Código</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para editar contenido -->
+    <div id="editModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Editar</h3>
+                <span class="close" onclick="closeEditModal()">&times;</span>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Contenido dinámico -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn" onclick="saveEdit()">Guardar</button>
+                <button class="btn btn-secondary" onclick="closeEditModal()">Cancelar</button>
             </div>
         </div>
     </div>
 
     <div id="toast" class="toast"></div>
 
-    <script>
-        let data = {
-            movies: [],
-            series: []
-        };
-
-        let movieServerCount = 0;
-        let seasonCount = 0;
-
-        // Funciones para tabs
-        function showTab(tabName) {
-            const tabs = document.querySelectorAll('.tab');
-            const contents = document.querySelectorAll('.tab-content');
-            
-            tabs.forEach(tab => tab.classList.remove('active'));
-            contents.forEach(content => content.classList.remove('active'));
-            
-            document.querySelector(`[onclick="showTab('${tabName}')"]`).classList.add('active');
-            document.getElementById(tabName).classList.add('active');
-            
-            if (tabName === 'json') {
-                updateJSONDisplay();
-            }
-        }
-
-        // Funciones para películas
-        function addMovieServer() {
-            movieServerCount++;
-            const serversContainer = document.getElementById('movieServers');
-            const serverDiv = document.createElement('div');
-            serverDiv.className = 'server-item';
-            serverDiv.innerHTML = `
-                <div class="server-row">
-                    <div class="form-group">
-                        <label>Servidor</label>
-                        <select class="movie-server-name">
-                            <option value="">Seleccionar servidor</option>
-                            <option value="YouTube">YouTube</option>
-                            <option value="Google Drive">Google Drive</option>
-                            <option value="OneDrive">OneDrive</option>
-                            <option value="Facebook">Facebook</option>
-                            <option value="Dropbox">Dropbox</option>
-                            <option value="TeraBox">TeraBox</option>
-                            <option value="MEGA">MEGA</option>
-                            <option value="Mediafire">Mediafire</option>
-                            <option value="Streamtape">Streamtape</option>
-                            <option value="Doodstream">Doodstream</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>URL</label>
-                        <input type="url" class="movie-server-url" placeholder="https://...">
-                    </div>
-                    <div class="form-group">
-                        <label>Idioma</label>
-                        <select class="movie-server-language">
-                            <option value="Español">Español</option>
-                            <option value="Inglés">Inglés</option>
-                            <option value="Inglés (Sub Español)">Inglés (Sub Español)</option>
-                            <option value="Portugués">Portugués</option>
-                            <option value="Francés">Francés</option>
-                            <option value="Italiano">Italiano</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Calidad</label>
-                        <select class="movie-server-quality">
-                            <option value="HD">HD</option>
-                            <option value="Full HD">Full HD</option>
-                            <option value="4K">4K</option>
-                            <option value="SD">SD</option>
-                            <option value="720p">720p</option>
-                            <option value="1080p">1080p</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <button class="btn btn-danger" onclick="this.parentElement.parentElement.parentElement.remove()">Eliminar</button>
-                    </div>
-                </div>
-            `;
-            serversContainer.appendChild(serverDiv);
-        }
-
-        function addMovie() {
-            const title = document.getElementById('movieTitle').value;
-            const year = document.getElementById('movieYear').value;
-            const genre = document.getElementById('movieGenre').value;
-            const director = document.getElementById('movieDirector').value;
-            const duration = document.getElementById('movieDuration').value;
-            const rating = document.getElementById('movieRating').value;
-            const synopsis = document.getElementById('movieSynopsis').value;
-            const poster = document.getElementById('moviePoster').value;
-            const trailer = document.getElementById('movieTrailer').value;
-
-            if (!title) {
-                showToast('Por favor, ingresa el título de la película');
-                return;
-            }
-
-            const servers = [];
-            const serverItems = document.querySelectorAll('#movieServers .server-item');
-            serverItems.forEach(item => {
-                const serverName = item.querySelector('.movie-server-name').value;
-                const serverUrl = item.querySelector('.movie-server-url').value;
-                const serverLanguage = item.querySelector('.movie-server-language').value;
-                const serverQuality = item.querySelector('.movie-server-quality').value;
-                
-                if (serverName && serverUrl) {
-                    servers.push({
-                        name: serverName,
-                        url: serverUrl,
-                        language: serverLanguage,
-                        quality: serverQuality
-                    });
-                }
-            });
-
-            const movie = {
-                id: Date.now(),
-                title,
-                year: parseInt(year) || new Date().getFullYear(),
-                genre,
-                director,
-                duration: parseInt(duration) || 0,
-                rating,
-                synopsis,
-                poster,
-                trailer,
-                servers,
-                dateAdded: new Date().toISOString()
-            };
-
-            data.movies.push(movie);
-            clearMovieForm();
-            showToast('Película agregada exitosamente');
-        }
-
-        function clearMovieForm() {
-            document.getElementById('movieTitle').value = '';
-            document.getElementById('movieYear').value = '';
-            document.getElementById('movieGenre').value = '';
-            document.getElementById('movieDirector').value = '';
-            document.getElementById('movieDuration').value = '';
-            document.getElementById('movieRating').value = '';
-            document.getElementById('movieSynopsis').value = '';
-            document.getElementById('moviePoster').value = '';
-            document.getElementById('movieTrailer').value = '';
-            document.getElementById('movieServers').innerHTML = '';
-            movieServerCount = 0;
-        }
-
-        // Funciones para series
-        function addSeason() {
-            seasonCount++;
-            const seasonsContainer = document.getElementById('seasonsContainer');
-            const seasonDiv = document.createElement('div');
-            seasonDiv.className = 'season-item';
-            seasonDiv.innerHTML = `
-                <div class="season-header">
-                    <div class="season-title">Temporada ${seasonCount}</div>
-                    <button class="btn btn-danger" onclick="this.parentElement.parentElement.remove()">Eliminar Temporada</button>
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Número de Temporada</label>
-                        <input type="number" class="season-number" value="${seasonCount}" min="1">
-                    </div>
-                    <div class="form-group">
-                        <label>Año</label>
-                        <input type="number" class="season-year" placeholder="2024">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>Descripción de la Temporada</label>
-                    <textarea class="season-description" placeholder="Descripción opcional de la temporada"></textarea>
-                </div>
-                <h4 style="margin: 15px 0; color: #b3d9ff;">Episodios</h4>
-                <div class="episodes-container"></div>
-                <div class="add-section">
-                    <button class="btn btn-secondary" onclick="addEpisode(this)">+ Agregar Episodio</button>
-                </div>
-            `;
-            seasonsContainer.appendChild(seasonDiv);
-        }
-
-        function addEpisode(button) {
-            const episodesContainer = button.parentElement.previousElementSibling;
-            const episodeCount = episodesContainer.children.length + 1;
-            const episodeDiv = document.createElement('div');
-            episodeDiv.className = 'episode-item';
-            episodeDiv.innerHTML = `
-                <div class="episode-header">
-                    <h5>Episodio ${episodeCount}</h5>
-                    <button class="btn btn-danger" onclick="this.parentElement.parentElement.remove()">Eliminar</button>
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Número</label>
-                        <input type="number" class="episode-number" value="${episodeCount}" min="1">
-                    </div>
-                    <div class="form-group">
-                        <label>Título</label>
-                        <input type="text" class="episode-title" placeholder="Título del episodio">
-                    </div>
-                    <div class="form-group">
-                        <label>Duración (min)</label>
-                        <input type="number" class="episode-duration" placeholder="45">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>Sinopsis</label>
-                    <textarea class="episode-synopsis" placeholder="Descripción del episodio"></textarea>
-                </div>
-                <h5 style="margin: 15px 0; color: #b3d9ff;">Servidores del Episodio</h5>
-                <div class="episode-servers"></div>
-                <button class="btn btn-secondary" onclick="addEpisodeServer(this)">+ Agregar Servidor</button>
-            `;
-            episodesContainer.appendChild(episodeDiv);
-        }
-
-        function addEpisodeServer(button) {
-            const serversContainer = button.previousElementSibling;
-            const serverDiv = document.createElement('div');
-            serverDiv.className = 'server-item';
-            serverDiv.innerHTML = `
-                <div class="server-row">
-                    <div class="form-group">
-                        <label>Servidor</label>
-                        <select class="episode-server-name">
-                            <option value="">Seleccionar servidor</option>
-                            <option value="YouTube">YouTube</option>
-                            <option value="Google Drive">Google Drive</option>
-                            <option value="OneDrive">OneDrive</option>
-                            <option value="Facebook">Facebook</option>
-                            <option value="Dropbox">Dropbox</option>
-                            <option value="TeraBox">TeraBox</option>
-                            <option value="MEGA">MEGA</option>
-                            <option value="Mediafire">Mediafire</option>
-                            <option value="Streamtape">Streamtape</option>
-                            <option value="Doodstream">Doodstream</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>URL</label>
-                        <input type="url" class="episode-server-url" placeholder="https://...">
-                    </div>
-                    <div class="form-group">
-                        <label>Idioma</label>
-                        <select class="episode-server-language">
-                            <option value="Español">Español</option>
-                            <option value="Inglés">Inglés</option>
-                            <option value="Inglés (Sub Español)">Inglés (Sub Español)</option>
-                            <option value="Portugués">Portugués</option>
-                            <option value="Francés">Francés</option>
-                            <option value="Italiano">Italiano</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Calidad</label>
-                        <select class="episode-server-quality">
-                            <option value="HD">HD</option>
-                            <option value="Full HD">Full HD</option>
-                            <option value="4K">4K</option>
-                            <option value="SD">SD</option>
-                            <option value="720p">720p</option>
-                            <option value="1080p">1080p</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <button class="btn btn-danger" onclick="this.parentElement.parentElement.remove()">Eliminar</button>
-                    </div>
-                </div>
-            `;
-            serversContainer.appendChild(serverDiv);
-        }
-
-        function addSeries() {
-            const title = document.getElementById('seriesTitle').value;
-            const year = document.getElementById('seriesYear').value;
-            const genre = document.getElementById('seriesGenre').value;
-            const creator = document.getElementById('seriesCreator').value;
-            const status = document.getElementById('seriesStatus').value;
-            const rating = document.getElementById('seriesRating').value;
-            const synopsis = document.getElementById('seriesSynopsis').value;
-            const poster = document.getElementById('seriesPoster').value;
-            const trailer = document.getElementById('seriesTrailer').value;
-
-            if (!title) {
-                showToast('Por favor, ingresa el título de la serie');
-                return;
-            }
-
-            const seasons = [];
-            const seasonItems = document.querySelectorAll('#seasonsContainer .season-item');
-            
-            seasonItems.forEach(seasonItem => {
-                const seasonNumber = seasonItem.querySelector('.season-number').value;
-                const seasonYear = seasonItem.querySelector('.season-year').value;
-                const seasonDescription = seasonItem.querySelector('.season-description').value;
-                
-                const episodes = [];
-                const episodeItems = seasonItem.querySelectorAll('.episode-item');
-                
-                episodeItems.forEach(episodeItem => {
-                    const episodeNumber = episodeItem.querySelector('.episode-number').value;
-                    const episodeTitle = episodeItem.querySelector('.episode-title').value;
-                    const episodeDuration = episodeItem.querySelector('.episode-duration').value;
-                    const episodeSynopsis = episodeItem.querySelector('.episode-synopsis').value;
-                    
-                    const episodeServers = [];
-                    const episodeServerItems = episodeItem.querySelectorAll('.episode-servers .server-item');
-                    
-                    episodeServerItems.forEach(serverItem => {
-                        const serverName = serverItem.querySelector('.episode-server-name').value;
-                        const serverUrl = serverItem.querySelector('.episode-server-url').value;
-                        const serverLanguage = serverItem.querySelector('.episode-server-language').value;
-                        const serverQuality = serverItem.querySelector('.episode-server-quality').value;
-                        
-                        if (serverName && serverUrl) {
-                            episodeServers.push({
-                                name: serverName,
-                                url: serverUrl,
-                                language: serverLanguage,
-                                quality: serverQuality
-                            });
-                        }
-                    });
-                    
-                    if (episodeNumber && episodeTitle) {
-                        episodes.push({
-                            number: parseInt(episodeNumber),
-                            title: episodeTitle,
-                            duration: parseInt(episodeDuration) || 0,
-                            synopsis: episodeSynopsis,
-                            servers: episodeServers
-                        });
-                    }
-                });
-                
-                if (seasonNumber) {
-                    seasons.push({
-                        number: parseInt(seasonNumber),
-                        year: parseInt(seasonYear) || new Date().getFullYear(),
-                        description: seasonDescription,
-                        episodes: episodes.sort((a, b) => a.number - b.number)
-                    });
-                }
-            });
-
-            const series = {
-                id: Date.now(),
-                title,
-                year: parseInt(year) || new Date().getFullYear(),
-                genre,
-                creator,
-                status,
-                rating,
-                synopsis,
-                poster,
-                trailer,
-                seasons: seasons.sort((a, b) => a.number - b.number),
-                dateAdded: new Date().toISOString()
-            };
-
-            data.series.push(series);
-            clearSeriesForm();
-            showToast('Serie agregada exitosamente');
-        }
-
-        function clearSeriesForm() {
-            document.getElementById('seriesTitle').value = '';
-            document.getElementById('seriesYear').value = '';
-            document.getElementById('seriesGenre').value = '';
-            document.getElementById('seriesCreator').value = '';
-            document.getElementById('seriesStatus').value = 'En emisión';
-            document.getElementById('seriesRating').value = '';
-            document.getElementById('seriesSynopsis').value = '';
-            document.getElementById('seriesPoster').value = '';
-            document.getElementById('seriesTrailer').value = '';
-            document.getElementById('seasonsContainer').innerHTML = '';
-            seasonCount = 0;
-        }
-
-        // Funciones de utilidad
-        function updateJSONDisplay() {
-            const jsonOutput = document.getElementById('jsonOutput');
-            const formattedJSON = JSON.stringify(data, null, 2);
-            jsonOutput.textContent = formattedJSON;
-            
-            // Actualizar estadísticas
-            updateStats();
-            
-            // Auto-guardar si está habilitado
-            if (document.getElementById('autoSync') && document.getElementById('autoSync').checked) {
-                autoSaveToFile();
-            }
-        }
-
-        function updateStats() {
-            const movieCount = data.movies.length;
-            const seriesCount = data.series.length;
-            let episodeCount = 0;
-            
-            data.series.forEach(series => {
-                series.seasons.forEach(season => {
-                    episodeCount += season.episodes.length;
-                });
-            });
-            
-            document.getElementById('movieCount').textContent = movieCount;
-            document.getElementById('seriesCount').textContent = seriesCount;
-            document.getElementById('episodeCount').textContent = episodeCount;
-            
-            const now = new Date();
-            document.getElementById('lastUpdate').textContent = now.toLocaleTimeString();
-            
-            // Calcular tamaño del archivo
-            const jsonSize = (JSON.stringify(data).length / 1024).toFixed(2);
-            document.getElementById('fileSize').textContent = jsonSize + ' KB';
-            
-            // Estado de sincronización
-            const syncStatus = document.getElementById('syncStatus');
-            if (document.getElementById('autoSync') && document.getElementById('autoSync').checked) {
-                syncStatus.style.color = '#28a745';
-                syncStatus.title = 'Sincronización automática activa';
-            } else {
-                syncStatus.style.color = '#ffc107';
-                syncStatus.title = 'Sincronización manual';
-            }
-        }
-
-        function copyJSON() {
-            const jsonText = JSON.stringify(data, null, 2);
-            navigator.clipboard.writeText(jsonText).then(() => {
-                showToast('JSON copiado al portapapeles');
-            }).catch(err => {
-                showToast('Error al copiar JSON');
-            });
-        }
-
-        function downloadJSON() {
-            const fileName = document.getElementById('jsonFileName').value || 'content.json';
-            const jsonText = JSON.stringify(data, null, 2);
-            const blob = new Blob([jsonText], { type: 'application/json' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = fileName;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-            showToast('JSON descargado exitosamente');
-        }
-
-        function saveToFile() {
-            downloadJSON();
-            showToast('Archivo guardado. Súbelo manualmente a tu repositorio de GitHub.');
-        }
-
-        function autoSaveToFile() {
-            // Guardar automáticamente en localStorage y crear archivo
-            const fileName = document.getElementById('jsonFileName').value || 'content.json';
-            const jsonText = JSON.stringify(data, null, 2);
-            
-            // Guardar en localStorage con timestamp
-            const autoSaveData = {
-                content: data,
-                timestamp: new Date().toISOString(),
-                fileName: fileName
-            };
-            localStorage.setItem('genZenitAutoSave', JSON.stringify(autoSaveData));
-            
-            // Mostrar notificación discreta
-            const syncStatus = document.getElementById('syncStatus');
-            syncStatus.style.color = '#28a745';
-            setTimeout(() => {
-                syncStatus.style.color = '#28a745';
-            }, 1000);
-        }
-
-        function uploadToGitHub() {
-            const repoUrl = document.getElementById('githubRepoUrl').value;
-            if (!repoUrl) {
-                showToast('Por favor, ingresa la URL de tu repositorio GitHub');
-                return;
-            }
-            
-            // Generar instrucciones para subir a GitHub
-            const instructions = `
-Para subir tu contenido a GitHub Pages:
-
-1. Ve a tu repositorio: ${repoUrl}
-2. Crea o edita el archivo: ${document.getElementById('jsonFileName').value}
-3. Pega el contenido JSON generado
-4. Haz commit y push
-5. Tu página estará disponible en: ${repoUrl}
-
-¿Quieres descargar el archivo JSON para subirlo manualmente?`;
-            
-            if (confirm(instructions)) {
-                downloadJSON();
-            }
-        }
-
-        function generateEmbedCode() {
-            const repoUrl = document.getElementById('githubRepoUrl').value;
-            const fileName = document.getElementById('jsonFileName').value || 'content.json';
-            
-            if (!repoUrl) {
-                showToast('Por favor, ingresa la URL de tu repositorio GitHub primero');
-                return;
-            }
-            
-            const baseUrl = repoUrl.endsWith('/') ? repoUrl : repoUrl + '/';
-            const jsonUrl = baseUrl + fileName;
-            
-            const embedCode = `<!-- Código de integración Gen Zenit -->
-<script>
-// Función para cargar contenido desde Gen Zenit
-async function loadGenZenitContent() {
-    try {
-        const response = await fetch('${jsonUrl}');
-        const data = await response.json();
-        
-        console.log('Contenido cargado:', data);
-        
-        // Aquí puedes procesar los datos
-        displayMovies(data.movies);
-        displaySeries(data.series);
-        
-        return data;
-    } catch (error) {
-        console.error('Error al cargar contenido:', error);
-        return null;
-    }
-}
-
-// Funciones de ejemplo para mostrar contenido
-function displayMovies(movies) {
-    movies.forEach(movie => {
-        console.log('Película:', movie.title);
-        // Agregar tu lógica aquí
-    });
-}
-
-function displaySeries(series) {
-    series.forEach(serie => {
-        console.log('Serie:', serie.title);
-        // Agregar tu lógica aquí
-    });
-}
-
-// Cargar contenido al cargar la página
-document.addEventListener('DOMContentLoaded', loadGenZenitContent);
-</script>`;
-            
-            document.getElementById('embedCode').textContent = embedCode;
-            document.getElementById('embedCodeSection').style.display = 'block';
-            showToast('Código de integración generado');
-        }
-
-        function copyEmbedCode() {
-            const embedCode = document.getElementById('embedCode').textContent;
-            navigator.clipboard.writeText(embedCode).then(() => {
-                showToast('Código de integración copiado');
-            }).catch(err => {
-                showToast('Error al copiar código');
-            });
-        }
-
-        function importJSON() {
-            const input = document.createElement('input');
-            input.type = 'file';
-            input.accept = '.json';
-            input.onchange = function(event) {
-                const file = event.target.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        try {
-                            const importedData = JSON.parse(e.target.result);
-                            if (importedData.movies && importedData.series) {
-                                data = importedData;
-                                updateJSONDisplay();
-                                showToast('JSON importado exitosamente');
-                            } else {
-                                showToast('Formato de JSON inválido');
-                            }
-                        } catch (error) {
-                            showToast('Error al leer el archivo JSON');
-                        }
-                    };
-                    reader.readAsText(file);
-                }
-            };
-            input.click();
-        }
-
-        function clearData() {
-            if (confirm('¿Estás seguro de que quieres limpiar todos los datos? Esta acción no se puede deshacer.')) {
-                data = { movies: [], series: [] };
-                updateJSONDisplay();
-                showToast('Todos los datos han sido eliminados');
-            }
-        }
-
-        function showToast(message) {
-            const toast = document.getElementById('toast');
-            toast.textContent = message;
-            toast.classList.add('show');
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 3000);
-        }
-
-        // Inicializar con algunos servidores de ejemplo
-        document.addEventListener('DOMContentLoaded', function() {
-            addMovieServer();
-            updateJSONDisplay();
-        });
-
-        // Cargar datos desde localStorage si existen
-        const savedData = localStorage.getItem('genZenitData');
-        if (savedData) {
-            try {
-                data = JSON.parse(savedData);
-                updateJSONDisplay();
-            } catch (e) {
-                console.error('Error al cargar datos guardados:', e);
-            }
-        }
-
-        // Cargar configuración guardada
-        const savedConfig = localStorage.getItem('genZenitConfig');
-        if (savedConfig) {
-            try {
-                const config = JSON.parse(savedConfig);
-                if (config.githubRepoUrl) document.getElementById('githubRepoUrl').value = config.githubRepoUrl;
-                if (config.jsonFileName) document.getElementById('jsonFileName').value = config.jsonFileName;
-                if (config.autoSync) document.getElementById('autoSync').checked = config.autoSync;
-            } catch (e) {
-                console.error('Error al cargar configuración:', e);
-            }
-        }
-
-        // Guardar configuración automáticamente
-        function saveConfig() {
-            const config = {
-                githubRepoUrl: document.getElementById('githubRepoUrl').value,
-                jsonFileName: document.getElementById('jsonFileName').value,
-                autoSync: document.getElementById('autoSync').checked
-            };
-            localStorage.setItem('genZenitConfig', JSON.stringify(config));
-        }
-
-        // Event listeners para guardar configuración
-        document.getElementById('githubRepoUrl').addEventListener('input', saveConfig);
-        document.getElementById('jsonFileName').addEventListener('input', saveConfig);
-        document.getElementById('autoSync').addEventListener('change', saveConfig);
-
-        // Guardar datos automáticamente
-        function saveData() {
-            localStorage.setItem('genZenitData', JSON.stringify(data));
-        }
-
-        // Modificar las funciones originales para incluir auto-guardado
-        const originalAddMovie = addMovie;
-        const originalAddSeries = addSeries;
-
-        window.addMovie = function() {
-            originalAddMovie();
-            saveData();
-            updateJSONDisplay();
-        };
-
-        window.addSeries = function() {
-            originalAddSeries();
-            saveData();
-            updateJSONDisplay();
-        };
-
-        // Función para generar URL de descarga directa
-        function generateDirectDownloadURL() {
-            const repoUrl = document.getElementById('githubRepoUrl').value;
-            const fileName = document.getElementById('jsonFileName').value || 'content.json';
-            
-            if (!repoUrl) return null;
-            
-            // Convertir URL de GitHub Pages a raw GitHub URL
-            let rawUrl = repoUrl;
-            if (repoUrl.includes('github.io')) {
-                const parts = repoUrl.split('.');
-                const username = parts[0].split('//')[1];
-                const repo = parts[1].split('/')[0];
-                rawUrl = `https://raw.githubusercontent.com/${username}/${repo}/main/${fileName}`;
-            }
-            
-            return rawUrl;
-        }
-
-        // Crear archivo JSON actualizado automáticamente
-        function createUpdatedJSONFile() {
-            const jsonText = JSON.stringify(data, null, 2);
-            const blob = new Blob([jsonText], { type: 'application/json' });
-            const url = URL.createObjectURL(blob);
-            
-            // Crear enlace de descarga oculto
-            const existingLink = document.getElementById('autoDownloadLink');
-            if (existingLink) existingLink.remove();
-            
-            const a = document.createElement('a');
-            a.id = 'autoDownloadLink';
-            a.href = url;
-            a.download = document.getElementById('jsonFileName').value || 'content.json';
-            a.style.display = 'none';
-            document.body.appendChild(a);
-            
-            return url;
-        }
-
-        // Actualizar archivo automáticamente cuando cambie el contenido
-        function handleContentChange() {
-            updateJSONDisplay();
-            createUpdatedJSONFile();
-            
-            if (document.getElementById('autoSync').checked) {
-                showToast('Contenido actualizado automáticamente', 'success', 1500);
-            }
-        }
-
-        // Función mejorada para mostrar toasts
-        function showToast(message, type = 'info', duration = 3000) {
-            const toast = document.getElementById('toast');
-            toast.textContent = message;
-            
-            // Colores según el tipo
-            switch(type) {
-                case 'success':
-                    toast.style.background = 'linear-gradient(45deg, #28a745, #20c997)';
-                    break;
-                case 'warning':
-                    toast.style.background = 'linear-gradient(45deg, #ffc107, #e0a800)';
-                    break;
-                case 'error':
-                    toast.style.background = 'linear-gradient(45deg, #dc3545, #c82333)';
-                    break;
-                default:
-                    toast.style.background = 'linear-gradient(45deg, #007bff, #0056b3)';
-            }
-            
-            toast.classList.add('show');
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, duration);
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
