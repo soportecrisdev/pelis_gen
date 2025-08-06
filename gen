@@ -9,12 +9,35 @@
       "duration": 143,
       "rating": "",
       "synopsis": "Una antigua guerra entre Autobots y Decepticons toma la Tierra como escenario, donde un adolescente tiene la clave para el poder definitivo.",
-      "poster": "https://www.imdb.com/es/title/tt0418279/mediaviewer/rm1758532608/?ref_=tt_ov_i",
+      "poster": "https://static.wikia.nocookie.net/transformers/images/e/ee/Transformers-poster.jpg/revision/latest?cb=20171126165316&path-prefix=es",
       "trailer": "https://youtu.be/CbX_SIz_9fk?si=e3lJ4j82UsMnPE7T",
       "servers": [
         {
           "name": "MEGA",
           "url": "https://mega.nz/file/xB5ASDqB#weM7psylzjbQoJ1TwZ12BgOMs2CAlCWRUtJZkT_-BVA",
+          "language": "Español",
+          "quality": "HD"
+        }
+      ],
+      "dateAdded": "2025-08-05T19:00:42.552Z"
+    }
+  ],
+"movies": [
+    {
+      "id": 1754420442553,
+      "title": "Rápidos y furiosos",
+      "year": 2001,
+      "genre": "Acción, Ciencia Fisión",
+      "director": "",
+      "duration": 143,
+      "rating": "",
+      "synopsis": "El ex convicto Dominic Toretto se une a su viejo adversario, Brian O'Conner, que ahora trabaja para el FBI en Los Ángeles, con el fin de infiltrarse en una organización criminal que se dedica a introducir heroína en la ciudad.El ex convicto Dominic Toretto se une a su viejo adversario, Brian O'Conner, que ahora trabaja para el FBI en Los Ángeles, con el fin de infiltrarse en una organización criminal que se dedica a introducir heroína en la ciudad.",
+      "poster": "https://m.media-amazon.com/images/S/pv-target-images/9007ac045bd82effe25e54671d02b321f48a8b3deaf95d45987d99f7dbbfab9e.jpg",
+      "trailer": "https://youtu.be/J8kzPh6-40I?si=WZtAVTrPmq8uhV07",
+      "servers": [
+        {
+          "name": "Google Drive",
+          "url": "https://drive.google.com/file/d/1sHszs8xs9JoF9meAaqWHYrpPpoWA4eHn/view?usp=sharing",
           "language": "Español",
           "quality": "HD"
         }
