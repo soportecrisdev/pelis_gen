@@ -1,29 +1,6 @@
 {
   "movies": [
     {
-      "id": 1754420442552,
-      "title": "Transformers",
-      "year": 2007,
-      "genre": "Acción, Ciencia Fisión",
-      "director": "",
-      "duration": 143,
-      "rating": "",
-      "synopsis": "Una antigua guerra entre Autobots y Decepticons toma la Tierra como escenario, donde un adolescente tiene la clave para el poder definitivo.",
-      "poster": "https://static.wikia.nocookie.net/transformers/images/e/ee/Transformers-poster.jpg/revision/latest?cb=20171126165316&path-prefix=es",
-      "trailer": "https://youtu.be/CbX_SIz_9fk?si=e3lJ4j82UsMnPE7T",
-      "servers": [
-        {
-          "name": "MEGA",
-          "url": "https://mega.nz/file/xB5ASDqB#weM7psylzjbQoJ1TwZ12BgOMs2CAlCWRUtJZkT_-BVA",
-          "language": "Español",
-          "quality": "HD"
-        }
-      ],
-      "dateAdded": "2025-08-05T19:00:42.552Z"
-    }
-  ],
-"movies": [
-    {
       "id": 1754455192273,
       "title": "Rápidos y furiosos",
       "year": 2001,
@@ -43,6 +20,50 @@
         }
       ],
       "dateAdded": "2025-08-06T04:39:52.273Z"
+    },
+    {
+      "id": 1754526572088,
+      "title": "Tranformes",
+      "year": 2007,
+      "genre": "Acción, Ciencia Fisión",
+      "director": "",
+      "duration": 147,
+      "saga": "Transformes",
+      "rating": "G",
+      "synopsis": "Una antigua guerra entre Autobots y Decepticons toma la Tierra como escenario, donde un adolescente tiene la clave para el poder definitivo.",
+      "poster": "https://upload.wikimedia.org/wikipedia/en/thumb/6/66/Transformers07.jpg/250px-Transformers07.jpg",
+      "trailer": "https://youtu.be/CbX_SIz_9fk?si=e3lJ4j82UsMnPE7T",
+      "servers": [
+        {
+          "name": "Google Drive",
+          "url": "https://drive.google.com/file/d/1fbE24HMr-I1Ut7zQJgVWxhefGBiqYcTo/view?usp=sharing",
+          "language": "Español",
+          "quality": "HD"
+        }
+      ],
+      "dateAdded": "2025-08-07T00:29:32.088Z"
+    },
+    {
+      "id": 1754526769638,
+      "title": "Transformes 2",
+      "year": 2009,
+      "genre": "Acción, Aventura, Ciencia ficción, Suspense",
+      "director": "",
+      "duration": 143,
+      "saga": "Transformes",
+      "rating": "G",
+      "synopsis": "Han transcurrido dos años desde que Sam Witwicky salvara al universo de una batalla decisiva entre dos clanes rivales de robots extraterrestres. A pesar de sus proezas, Sam sigue siendo un adolescente preocupado por los problemas de la gente de su edad, robots gigantes aparte: pronto entrará en la universidad y debe separarse por primera vez en su vida de su novia Mikaela y de sus padres. También tiene que tratar de explicarle su partida a su nuevo amigo, el robot Bumblebee. Sam aspira a vivir una vida de estudiante normal, pero debe darle la espalda a su destino para lograrlo, y resignarse a vivir una vida todo lo normal que se pueda permitir.",
+      "poster": "https://images.justwatch.com/poster/309818414/s718/transformers-la-venganza-de-los-caidos.jpg",
+      "trailer": "https://youtu.be/ePRrWxFDcXI?si=ZeYA4r7ffG1plmIU",
+      "servers": [
+        {
+          "name": "Google Drive",
+          "url": "https://drive.google.com/file/d/1OfdLyZvwDw0HrKqYeFV-39BOTc45GuEL/view?usp=sharing",
+          "language": "Español",
+          "quality": "HD"
+        }
+      ],
+      "dateAdded": "2025-08-07T00:32:49.638Z"
     }
   ],
   "series": [
